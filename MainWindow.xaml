@@ -1,0 +1,35 @@
+﻿<Window x:Class="WPF_MVVM_App_Shell.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_MVVM_App_Shell"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="100*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*" />
+            <ColumnDefinition Width="100*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">
+            <Button x:Name="btnAddItem" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Center" Width="40" Command="{Binding btnAddItem}" Margin="5, 5, 10, 5" />
+            <Button x:Name="btnRemoveItem" Content="Remove" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Command="{Binding btnRemoveItem}" Margin="5" />
+        </StackPanel>
+
+        <ListView Grid.Row="1" HorizontalAlignment="Stretch" Margin="5" ItemsSource="{Binding ListOfThings}" SelectedItem="{Binding SelectedItem}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Width="Auto" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Label Grid.Column="1" VerticalAlignment="Bottom">Note:</Label>
+        <TextBox Grid.Column="1" Grid.Row="1" Name="QueryBox" Text="{Binding SelectedItem.Notes}" TextWrapping="Wrap" AcceptsReturn="True" Margin="5"/>
+    </Grid>
+</Window>
